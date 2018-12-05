@@ -51,12 +51,12 @@ I
   
  IV
  
- 1. SELECT S.*, SS.sem, ssS.sec FROM Student S, Semsec SS, Class C WHWRE S.usn = C.usn AND SS.ssid = C.ssid AND ss.sem = 4 AND SS.sec = 'C';
+ 1. SELECT S.*, SS.sem, SS.sec FROM Student S, Semsec SS, Class C WHWRE S.usn = C.usn AND SS.ssid = C.ssid AND ss.sem = 4 AND SS.sec = 'C';
  
  2. SELECT SS.sem, SS.sec, S.gender, COUNT(S.GENDER) AS COUNT FROM Student S, Semsec SS, Class C 
     WHERE S.usn = C.usn AND SS.ssid = C.ssid GROUP BY SS.sem, SS.sec, S.gender ORDER BY Sem;
     
- 3. CREATE VIEW stu AS SELECT test1,  subcode FROM iamarks WHERE usn = '1ks16vs02';
+ 3. CREATE VIEW stu AS SELECT test1, subcode FROM iamarks WHERE usn = '1ks16vs02';
  
  4. Update iamarks set finalia = (test1+test2+test3-least(test1,test2,test3))/2;
  
@@ -67,4 +67,18 @@ I
  		ELSE 'WEAK'
  	END) As cat
 	FROM Student S, Semsec SS, iamarks ia, Subject sub
-	WHERE S.usn = ia.usn AND SS.ssid = ia.ssid AND sub.subcode = ia.subcode AND sub.SEM=8;
+	WHERE S.usn = ia.usn AND SS.ssid = ia.ssid AND sub.subcode = ia.subcode AND sub.SEM=8;	
+	
+	
+ V
+ 
+ 1. (SELECT DISTINCT P.pno FROM Project P, Department D, Employee E
+ 	WHERE D.dno = E.dno AND E.Lname = 'Scott' ANND D.mgrssn = E.ssn)
+ 	UNION 
+ 	(SELECT DISTINCT P.pno FROM Project P, Works_on W, EMployee E WHERE P.pno = W.pno AND E.ssn = W.ssn AND E1.lname='scott');
+ 	
+ 2. SELECT E.fname, E.lname, 1.1*E.salary AS incr_sal FROM EMPLOYEE E, Works_on W, Project P WHERE E.ssn = W.ssn AND E.pno = P.pno AND P.pname = 'IOT';
+ 
+ 3. SELECT SUM(E.salary), Max(E.salary), AVG(E.salary), Min(E.salary) From Employee E, Department D WHERE E.dno = D.dno AND D.dname = 'ACCOUNTS';
+ 
+ 4. SLECT E.fname,E.Lname FROM Employee E WHERE NOT EXISTS ((SELECT pno from Project WHere dno='5') MINUS (SELECR pno FROM works_on WHERE E.ssn = ssn));
