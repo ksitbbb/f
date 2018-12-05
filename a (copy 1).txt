@@ -82,5 +82,3 @@ I
  3. SELECT SUM(E.salary), Max(E.salary), AVG(E.salary), Min(E.salary) From Employee E, Department D WHERE E.dno = D.dno AND D.dname = 'ACCOUNTS';
  
  4. SLECT E.fname,E.Lname FROM Employee E WHERE NOT EXISTS ((SELECT pno from Project WHere dno='5') MINUS (SELECR pno FROM works_on WHERE E.ssn = ssn));
- 
- 5. SELECT D.dno, COUNT(*) FRoM Employee E ,Department D WHERE E.dno = D.dno AND E.salary > 600000 AND D.dno in (SELECT dno FROM Employee GROUP BY dno HAVING COUNT(*)>5) GROUP BY D.dno;
